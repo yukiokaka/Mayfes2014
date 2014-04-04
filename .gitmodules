@@ -1,3 +1,3 @@
 [submodule "DigitalPiano/firmware"]
 	path = DigitalPiano/firmware
-	url = git@github.com:yukiokaka/Mayfes2014-DigitalPiano-firmware.git
+    url = https://github.com/yukiokaka/Mayfes2014-DigitalPiano-firmware.git
