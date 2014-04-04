@@ -682,6 +682,23 @@ grid 7.5 mm, outline 3.2 x 10.3 mm</description>
 <wire x1="-0.635" y1="0.635" x2="-2.54" y2="0.635" width="0.127" layer="21"/>
 <circle x="0" y="0" radius="3.175" width="0.127" layer="21"/>
 </package>
+<package name="IS-2235">
+<pad name="P$1" x="0" y="1.6" drill="0.8" shape="octagon"/>
+<pad name="P$2" x="0" y="-1.6" drill="0.8" shape="octagon"/>
+<pad name="P$3" x="2.5" y="1.6" drill="0.8" shape="octagon"/>
+<pad name="P$4" x="2.5" y="-1.6" drill="0.8" shape="octagon"/>
+<pad name="P$5" x="-2.5" y="1.6" drill="0.8" shape="octagon"/>
+<pad name="P$6" x="-2.5" y="-1.6" drill="0.8" shape="octagon"/>
+<wire x1="4.25" y1="2" x2="-4.25" y2="2" width="0.127" layer="51"/>
+<wire x1="-4.25" y1="2" x2="-4.25" y2="-2" width="0.127" layer="51"/>
+<wire x1="-4.25" y1="-2" x2="4.25" y2="-2" width="0.127" layer="51"/>
+<wire x1="4.25" y1="-2" x2="4.25" y2="2" width="0.127" layer="51"/>
+<wire x1="-3.175" y1="1.27" x2="3.175" y2="1.27" width="0.127" layer="51"/>
+<wire x1="3.175" y1="1.27" x2="3.175" y2="-1.27" width="0.127" layer="51"/>
+<wire x1="3.175" y1="-1.27" x2="-3.175" y2="-1.27" width="0.127" layer="51"/>
+<wire x1="-3.175" y1="-1.27" x2="-3.175" y2="1.27" width="0.127" layer="51"/>
+<rectangle x1="0.635" y1="-1.27" x2="3.175" y2="1.27" layer="51"/>
+</package>
 </packages>
 <symbols>
 <symbol name="R">
@@ -728,6 +745,19 @@ grid 7.5 mm, outline 3.2 x 10.3 mm</description>
 <wire x1="0" y1="-1.27" x2="0" y2="-2.54" width="0.1524" layer="94"/>
 <wire x1="0" y1="-1.27" x2="1.27" y2="-2.54" width="0.1524" layer="94"/>
 <wire x1="0" y1="-1.27" x2="-1.27" y2="-2.54" width="0.1524" layer="94"/>
+</symbol>
+<symbol name="SLIDINGSW">
+<text x="-6.35" y="-1.905" size="1.778" layer="95" rot="R90">&gt;NAME</text>
+<wire x1="2.54" y1="-3.175" x2="2.54" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-1.905" x2="0.635" y2="3.175" width="0.254" layer="94"/>
+<pin name="P" x="2.54" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
+<pin name="S" x="5.08" y="5.08" visible="pad" length="short" direction="pas" swaplevel="1" rot="R270"/>
+<wire x1="3.81" y1="2.54" x2="5.08" y2="2.54" width="0.254" layer="94"/>
+<wire x1="5.08" y1="2.54" x2="5.08" y2="3.175" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="1.27" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="0" y2="3.175" width="0.254" layer="94"/>
+<pin name="O" x="0" y="5.08" visible="pad" length="short" direction="pas" swaplevel="1" rot="R270"/>
+<text x="-3.81" y="2.54" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -1019,6 +1049,30 @@ grid 7.5 mm, outline 3.2 x 10.3 mm</description>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="2" pad="2"/>
 <connect gate="G$1" pin="BR" pad="BR"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="IS-2235" prefix="SW">
+<description>&lt;b&gt;3-pin Slide Switch&lt;/b&gt;
+&lt;p&gt;
+sold in akidzuki @100yen (2008/10/14)</description>
+<gates>
+<gate name="G$1" symbol="SLIDINGSW" x="-5.08" y="0"/>
+<gate name="G$2" symbol="SLIDINGSW" x="5.08" y="0"/>
+</gates>
+<devices>
+<device name="" package="IS-2235">
+<connects>
+<connect gate="G$1" pin="O" pad="P$3"/>
+<connect gate="G$1" pin="P" pad="P$1"/>
+<connect gate="G$1" pin="S" pad="P$5"/>
+<connect gate="G$2" pin="O" pad="P$4"/>
+<connect gate="G$2" pin="P" pad="P$2"/>
+<connect gate="G$2" pin="S" pad="P$6"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -1716,17 +1770,18 @@ for Power supply cable</description>
 <part name="D1" library="Diode_Robotech" deviceset="LED" device="-5"/>
 <part name="R9" library="Passive_Robotech" deviceset="R" device="/10" value="1k"/>
 <part name="P+4" library="Supply_Robotech" deviceset="VCC" device=""/>
-<part name="IC2" library="IC_Robotech" deviceset="78*" device="(LARGEHOLE)"/>
+<part name="TA7805" library="IC_Robotech" deviceset="78*" device="(LARGEHOLE)"/>
 <part name="P+5" library="Supply_Robotech" deviceset="VCC" device=""/>
 <part name="SUPPLY7" library="Supply_Robotech" deviceset="GND" device=""/>
-<part name="PAD1" library="Connector_Robotech" deviceset="POWERPAD" device="-2.4"/>
-<part name="PAD2" library="Connector_Robotech" deviceset="POWERPAD" device="-2.4"/>
+<part name="GND" library="Connector_Robotech" deviceset="POWERPAD" device="-2.4"/>
 <part name="SUPPLY8" library="Supply_Robotech" deviceset="GND" device=""/>
 <part name="C4" library="Passive_Robotech" deviceset="C" device="/5" value="0.1u"/>
 <part name="C5" library="Passive_Robotech" deviceset="C" device="/5" value="0.33u"/>
 <part name="P+6" library="Supply_Robotech" deviceset="VCC" device=""/>
 <part name="SUPPLY9" library="Supply_Robotech" deviceset="GND" device=""/>
 <part name="C6" library="Passive_Robotech" deviceset="C" device="/5" value="0.1u"/>
+<part name="VCC" library="Connector_Robotech" deviceset="POWERPAD" device="-2.4"/>
+<part name="SW1" library="Passive_Robotech" deviceset="IS-2235" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1760,11 +1815,10 @@ for Power supply cable</description>
 <instance part="D1" gate="G$1" x="86.36" y="58.42"/>
 <instance part="R9" gate="G$1" x="86.36" y="68.58" rot="R90"/>
 <instance part="P+4" gate="VCC" x="86.36" y="76.2"/>
-<instance part="IC2" gate="G$1" x="-5.08" y="30.48"/>
+<instance part="TA7805" gate="G$1" x="-5.08" y="30.48"/>
 <instance part="P+5" gate="VCC" x="7.62" y="35.56"/>
 <instance part="SUPPLY7" gate="GND" x="-5.08" y="20.32"/>
-<instance part="PAD1" gate="1" x="-25.4" y="35.56" rot="R270"/>
-<instance part="PAD2" gate="1" x="-17.78" y="35.56" rot="R270"/>
+<instance part="GND" gate="1" x="-25.4" y="35.56" rot="R270"/>
 <instance part="SUPPLY8" gate="GND" x="-25.4" y="30.48"/>
 <instance part="C4" gate="G$1" x="5.08" y="30.48"/>
 <instance part="C5" gate="G$1" x="-15.24" y="30.48"/>
@@ -1772,6 +1826,8 @@ for Power supply cable</description>
 <instance part="P+6" gate="VCC" x="91.44" y="40.64"/>
 <instance part="SUPPLY9" gate="GND" x="91.44" y="20.32"/>
 <instance part="C6" gate="G$1" x="96.52" y="30.48"/>
+<instance part="VCC" gate="1" x="-30.48" y="48.26" rot="R270"/>
+<instance part="SW1" gate="G$1" x="-25.4" y="48.26" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -1794,7 +1850,7 @@ for Power supply cable</description>
 <pinref part="P+4" gate="VCC" pin="VCC"/>
 </segment>
 <segment>
-<pinref part="IC2" gate="G$1" pin="O"/>
+<pinref part="TA7805" gate="G$1" pin="O"/>
 <pinref part="P+5" gate="VCC" pin="VCC"/>
 <wire x1="2.54" y1="33.02" x2="5.08" y2="33.02" width="0.1524" layer="91"/>
 <pinref part="C4" gate="G$1" pin="1"/>
@@ -1846,12 +1902,12 @@ for Power supply cable</description>
 <pinref part="R4" gate="G$1" pin="1"/>
 </segment>
 <segment>
-<pinref part="PAD1" gate="1" pin="P"/>
+<pinref part="GND" gate="1" pin="P"/>
 <pinref part="SUPPLY8" gate="GND" pin="GND"/>
 </segment>
 <segment>
 <pinref part="SUPPLY7" gate="GND" pin="GND"/>
-<pinref part="IC2" gate="G$1" pin="G"/>
+<pinref part="TA7805" gate="G$1" pin="G"/>
 <wire x1="-5.08" y1="22.86" x2="-5.08" y2="25.4" width="0.1524" layer="91"/>
 <pinref part="C5" gate="G$1" pin="2"/>
 <wire x1="-5.08" y1="25.4" x2="-5.08" y2="27.94" width="0.1524" layer="91"/>
@@ -1955,12 +2011,13 @@ for Power supply cable</description>
 </net>
 <net name="N$11" class="0">
 <segment>
-<pinref part="PAD2" gate="1" pin="P"/>
-<pinref part="IC2" gate="G$1" pin="I"/>
-<wire x1="-17.78" y1="33.02" x2="-15.24" y2="33.02" width="0.1524" layer="91"/>
+<pinref part="TA7805" gate="G$1" pin="I"/>
 <pinref part="C5" gate="G$1" pin="1"/>
 <wire x1="-15.24" y1="33.02" x2="-12.7" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="-15.24" y1="48.26" x2="-15.24" y2="33.02" width="0.1524" layer="91"/>
 <junction x="-15.24" y="33.02"/>
+<pinref part="SW1" gate="G$1" pin="O"/>
+<wire x1="-20.32" y1="48.26" x2="-15.24" y2="48.26" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$12" class="0">
@@ -1972,6 +2029,12 @@ for Power supply cable</description>
 <pinref part="D1" gate="G$1" pin="K"/>
 <wire x1="86.36" y1="53.34" x2="78.74" y2="53.34" width="0.1524" layer="91"/>
 <junction x="78.74" y="53.34"/>
+</segment>
+</net>
+<net name="N$13" class="0">
+<segment>
+<pinref part="VCC" gate="1" pin="P"/>
+<pinref part="SW1" gate="G$1" pin="P"/>
 </segment>
 </net>
 </nets>
