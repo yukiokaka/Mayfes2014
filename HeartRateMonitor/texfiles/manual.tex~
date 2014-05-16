@@ -1,0 +1,29 @@
+\documentclass[a4paper]{jarticle}
+\usepackage{url}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{fancybox}
+
+\setlength{\columnsep}{4zw}
+\setlength{\topmargin}{-0.3in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\textheight}{46\baselineskip}
+\setlength{\textwidth}{47zw}
+\title{心拍数計マニュアル}
+\author{EEIC 2014 Mayfes 電子工作教室}
+\usepackage{amsmath}	% required for `\cases' (yatex added)
+\begin{document}
+\maketitle
+\setlength{\columnseprule}{0.4pt}
+
+\begin{figure}[H]
+ \centering
+ \small %8
+ \includegraphics[width=6cm]{view.eps}
+ \caption{\small{基板図}} 
+\end{figure}
+
+
+\end{document}
+
